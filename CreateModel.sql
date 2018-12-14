@@ -22,7 +22,7 @@ CREATE TABLE `Apostadores`
 (
  `ID`    int NOT NULL AUTO_INCREMENT ,
  `Nome`  varchar(200) NOT NULL ,
- `CPF`   int NOT NULL ,
+ `CPF`   bigint NOT NULL ,
  `Email` varchar(200) NOT NULL ,
 PRIMARY KEY (`ID`)
 ) AUTO_INCREMENT=1;
@@ -74,7 +74,7 @@ CONSTRAINT `FK_16` FOREIGN KEY `fkIdx_16` (`Esporte_ID`) REFERENCES `Esportes` (
 
 CREATE TABLE `Contas`
 (
- `ID`                int NOT NULL ,
+ `ID`                int NOT NULL AUTO_INCREMENT,
  `Apostador_ID`      int NOT NULL ,
  `Saldo`             decimal NOT NULL ,
  `Qtd_Saque`         int ,
