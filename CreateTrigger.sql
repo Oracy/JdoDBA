@@ -13,7 +13,7 @@ delimiter ;
 
 --TRG_UPDATE_SALDO_AFTER_DEPOSITO
 delimiter //
-CREATE TRIGGER TRG_UPDATE_SALDO_AFTER_DEPOSITO BEFORE INSERT ON Deposito
+CREATE TRIGGER TRG_UPDATE_SALDO_AFTER_DEPOSITO BEFORE INSERT ON Depositos
 FOR EACH 
 ROW
     BEGIN
@@ -26,7 +26,7 @@ delimiter ;
 
 --TRG_UPDATE_SALDO_AFTER_SAQUE
 delimiter //
-CREATE TRIGGER TRG_UPDATE_SALDO_AFTER_SAQUE BEFORE INSERT ON Saque
+CREATE TRIGGER TRG_UPDATE_SALDO_AFTER_SAQUE BEFORE INSERT ON Saques
 FOR EACH
 ROW
     BEGIN
@@ -47,12 +47,10 @@ ROW
     
             UPDATE Contas
             SET Saldo = Saldo + NEW.Valor_Transferido
-               ,Qtd_Transferencia = Qtd_Transferencia + 1
             WHERE Apostador_ID = NEW.Destino_Apostador_ID;
 
             UPDATE Contas
             SET Saldo = Saldo - NEW.Valor_Transferido
-               ,Qtd_Transferencia = Qtd_Transferencia + 1
             WHERE Apostador_ID = NEW.Origem_Apostador_ID;
      
         END IF;
@@ -63,7 +61,7 @@ delimiter ;
 
 --TRG_UPDATE_SALDO_AFTER_RESULTADO
 delimiter //
-CREATE TRIGGER TRG_UPDATE_SALDO_AFTER_RESULTADO BEFORE INSERT ON Resultado
+CREATE TRIGGER TRG_UPDATE_SALDO_AFTER_RESULTADO BEFORE INSERT ON Resultados
 FOR EACH 
 ROW
     BEGIN
@@ -72,18 +70,18 @@ ROW
             UPDATE Apostas
             SET Resultado = NEW.Resultado
                ,Aposta_Finalizada = 1
-            WHERE Apostador_ID = (SELECT Apostador_ID FROM Apostas WHERE Aposta_Finalizada = 0);
+            WHERE Apostador_ID = (SELECT Apostador_ID FROM Apostas WHERE Aposta_Finalizada = 0 LIMIT 1);
 
             UPDATE Contas
             SET Saldo = Saldo + (Valor_Apostado * 2)
-            WHERE Apostador_ID = (SELECT Apostador_ID FROM Apostas WHERE Aposta_Finalizada = 0);
+            WHERE Apostador_ID = (SELECT Apostador_ID FROM Apostas WHERE Aposta_Finalizada = 0 LIMIT 1);
             
-            ELSE
+        ELSE
 
             UPDATE Apostas
             SET Resultado = NEW.Resultado
                ,Aposta_Finalizada = 1
-            WHERE Apostador_ID = (SELECT Apostador_ID FROM Apostas WHERE Aposta_Finalizada = 0);
+            WHERE Apostador_ID = (SELECT Apostador_ID FROM Apostas WHERE Aposta_Finalizada = 0 LIMIT 1);
 
         END IF;
     END;

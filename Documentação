@@ -3,33 +3,13 @@ A tabela Aposta ao invés de fazer a verificação se foi uma aposta vencida ou 
 
 Foram criadas 5 triggers, TRG_UPDATE_SALDO_AFTER_APOSTA atualiza o saldo na conta do apostador após a aposta ser feita, TRG_UPDATE_SALDO_AFTER_DEPOSITO atualiza o saldo na conta do apostador após o apostador fazer um depósito, TRG_UPDATE_SALDO_AFTER_SAQUE atualiza o saldo na conta do apostador fazer um saque da sua conta, TRG_UPDATE_SALDO_AFTER_TRANSFERENCIA atualiza o saldo na conta dos apostadores aumentando e diminuindo os valores do saldo da conta de acordo, TRG_UPDATE_SALDO_AFTER_RESULTADO atualiza os valores na tabela de Apostas com o resultado se vencedor ou perdedor, Aposta_Finalizada e se o apostador venceu a aposta recebe o Valor_Apostado * 2
 
+A ordem de execução dos scripts são:
+1 - CreateModel.sql
+2 - CreateTrigger.sql
+3 - CreateView.sql
+4 - ScriptToFeed.sql
 
 
 
-
-
-
-
-
-Fazer uma aposta - Trigger - Diminuir saldo da conta antes de criar uma linha na tabela apostas
-
-Realizar  depósito - Trigger - Aumentar saldo da conta antes de dar update na tabela
-
-Realizar saque - Trigger - Diminuir saldo da conta antes de dar update na tabela
-
-Efetuar transferência para outro apostador - Trigger - Diminuir saldo na conta do usuario que manda dinheiro e aumentar saldo na conta do usuario que recebe a transferencia
 
 Resultado inserido - Trigger - Quando o resultado do jogo for inserido atualizar tabela Apostas com a finalização da aposta e adicionar o valor * 2 da aposta se vencedor. - FALTANDO ATUALIZAR TABELA APOSTAS.
-
-
-
-
-Consultar  seu caixa - View com a informação do Usuario para ver seu caixa - FALTANDO FAZER A SOMA DEPOSITO E SAQUE
-
-
-
-Ver o resultado de suas apostas - View com resultado das apostas
-
-
-
-Ver as apostas pendentes - View com as apostas pendentes

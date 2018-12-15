@@ -264,6 +264,8 @@ VALUES
     (NULL, '5', '36', SYSDATE()),
     (NULL, '6', '58', SYSDATE());
 
+
+
 -- Insert Values in Resultado
 INSERT INTO Resultados
     (`ID`, `Jogo_ID`, `Resultado`)
