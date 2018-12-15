@@ -40,6 +40,7 @@ CREATE TABLE `Transferencias`
  `Origem_Apostador_ID`  int NOT NULL ,
  `Destino_Apostador_ID` int NOT NULL ,
  `Valor_Transferido`    decimal NOT NULL ,
+ `Data`                 timestamp NOT NULL ,
 PRIMARY KEY (`ID`),
 KEY `fkIdx_87` (`Origem_Apostador_ID`),
 CONSTRAINT `FK_87` FOREIGN KEY `fkIdx_87` (`Origem_Apostador_ID`) REFERENCES `Apostadores` (`ID`),
@@ -52,13 +53,14 @@ CONSTRAINT `FK_90` FOREIGN KEY `fkIdx_90` (`Destino_Apostador_ID`) REFERENCES `A
 
 
 
--- ************************************** `Saque`
+-- ************************************** `Saques`
 
-CREATE TABLE `Saque`
+CREATE TABLE `Saques`
 (
  `ID`           int NOT NULL AUTO_INCREMENT ,
  `Apostador_ID` int NOT NULL ,
  `Valor_Sacado` decimal NOT NULL ,
+ `Data`         timestamp NOT NULL ,
 PRIMARY KEY (`ID`),
 KEY `fkIdx_114` (`Apostador_ID`),
 CONSTRAINT `FK_114` FOREIGN KEY `fkIdx_114` (`Apostador_ID`) REFERENCES `Apostadores` (`ID`)
@@ -87,13 +89,14 @@ CONSTRAINT `FK_16` FOREIGN KEY `fkIdx_16` (`Esporte_ID`) REFERENCES `Esportes` (
 
 
 
--- ************************************** `Deposito`
+-- ************************************** `Depositos`
 
-CREATE TABLE `Deposito`
+CREATE TABLE `Depositos`
 (
  `ID`               int NOT NULL AUTO_INCREMENT ,
  `Apostador_ID`     int NOT NULL ,
  `Valor_Depositado` decimal NOT NULL ,
+ `Data`             timestamp NOT NULL ,
 PRIMARY KEY (`ID`),
 KEY `fkIdx_104` (`Apostador_ID`),
 CONSTRAINT `FK_104` FOREIGN KEY `fkIdx_104` (`Apostador_ID`) REFERENCES `Apostadores` (`ID`)
@@ -156,9 +159,9 @@ CONSTRAINT `FK_24` FOREIGN KEY `fkIdx_24` (`Rodada_ID`) REFERENCES `Rodadas` (`I
 
 
 
--- ************************************** `Resultado`
+-- ************************************** `Resultados`
 
-CREATE TABLE `Resultado`
+CREATE TABLE `Resultados`
 (
  `ID`        int NOT NULL AUTO_INCREMENT ,
  `Jogo_ID`   int NOT NULL ,
@@ -187,15 +190,11 @@ CREATE TABLE `Apostas`
 2 - Vitoria Time 2' ,
  `Valor_Apostado`    decimal NOT NULL ,
  `Aposta_Finalizada` bit NOT NULL ,
- `Resultado`         int ,
+ `Resultado`         int COMMENT '0 - Perdeu
+1 - Venceu' ,
 PRIMARY KEY (`ID`),
 KEY `fkIdx_71` (`Jogo_ID`),
 CONSTRAINT `FK_71` FOREIGN KEY `fkIdx_71` (`Jogo_ID`) REFERENCES `Jogos` (`ID`),
 KEY `fkIdx_79` (`Apostador_ID`),
 CONSTRAINT `FK_79` FOREIGN KEY `fkIdx_79` (`Apostador_ID`) REFERENCES `Apostadores` (`ID`)
 ) AUTO_INCREMENT=1;
-
-
-
-
-
