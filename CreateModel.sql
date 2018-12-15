@@ -52,6 +52,23 @@ CONSTRAINT `FK_90` FOREIGN KEY `fkIdx_90` (`Destino_Apostador_ID`) REFERENCES `A
 
 
 
+-- ************************************** `Saque`
+
+CREATE TABLE `Saque`
+(
+ `ID`           int NOT NULL AUTO_INCREMENT ,
+ `Apostador_ID` int NOT NULL ,
+ `Valor_Sacado` decimal NOT NULL ,
+PRIMARY KEY (`ID`),
+KEY `fkIdx_114` (`Apostador_ID`),
+CONSTRAINT `FK_114` FOREIGN KEY `fkIdx_114` (`Apostador_ID`) REFERENCES `Apostadores` (`ID`)
+) AUTO_INCREMENT=1;
+
+
+
+
+
+
 -- ************************************** `Ligas`
 
 CREATE TABLE `Ligas`
@@ -70,20 +87,34 @@ CONSTRAINT `FK_16` FOREIGN KEY `fkIdx_16` (`Esporte_ID`) REFERENCES `Esportes` (
 
 
 
+-- ************************************** `Deposito`
+
+CREATE TABLE `Deposito`
+(
+ `ID`               int NOT NULL AUTO_INCREMENT ,
+ `Apostador_ID`     int NOT NULL ,
+ `Valor_Depositado` decimal NOT NULL ,
+PRIMARY KEY (`ID`),
+KEY `fkIdx_104` (`Apostador_ID`),
+CONSTRAINT `FK_104` FOREIGN KEY `fkIdx_104` (`Apostador_ID`) REFERENCES `Apostadores` (`ID`)
+) AUTO_INCREMENT=1;
+
+
+
+
+
+
 -- ************************************** `Contas`
 
 CREATE TABLE `Contas`
 (
- `ID`                int NOT NULL AUTO_INCREMENT,
- `Apostador_ID`      int NOT NULL ,
- `Saldo`             decimal NOT NULL ,
- `Qtd_Saque`         int ,
- `Qtd_Deposito`      int ,
- `Qtd_Transferencia` int ,
+ `ID`           int NOT NULL AUTO_INCREMENT ,
+ `Apostador_ID` int NOT NULL ,
+ `Saldo`        decimal NOT NULL ,
 PRIMARY KEY (`ID`),
 KEY `fkIdx_61` (`Apostador_ID`),
 CONSTRAINT `FK_61` FOREIGN KEY `fkIdx_61` (`Apostador_ID`) REFERENCES `Apostadores` (`ID`)
-);
+) AUTO_INCREMENT=1;
 
 
 
@@ -156,12 +187,15 @@ CREATE TABLE `Apostas`
 2 - Vitoria Time 2' ,
  `Valor_Apostado`    decimal NOT NULL ,
  `Aposta_Finalizada` bit NOT NULL ,
- `Resultado`         int COMMENT '0 - Empate
-1 - Vitoria Time 1
-2 - Vitoria Time 2' ,
+ `Resultado`         int ,
 PRIMARY KEY (`ID`),
 KEY `fkIdx_71` (`Jogo_ID`),
 CONSTRAINT `FK_71` FOREIGN KEY `fkIdx_71` (`Jogo_ID`) REFERENCES `Jogos` (`ID`),
 KEY `fkIdx_79` (`Apostador_ID`),
 CONSTRAINT `FK_79` FOREIGN KEY `fkIdx_79` (`Apostador_ID`) REFERENCES `Apostadores` (`ID`)
 ) AUTO_INCREMENT=1;
+
+
+
+
+

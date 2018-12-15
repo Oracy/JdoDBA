@@ -1,0 +1,15 @@
+Fazer uma aposta - Trigger - Diminuir saldo da conta antes de criar uma linha na tabela apostas
+
+Realizar  depósito - Trigger - Aumentar saldo da conta antes de dar update na tabela
+
+Realizar saque - Trigger - Diminuir saldo da conta antes de dar update na tabela
+
+Efetuar transferência para outro apostador - Trigger - Diminuir saldo na conta do usuario que manda dinheiro e aumentar saldo na conta do usuario que recebe a transferencia
+
+Resultado inserido - Trigger - Quando o resultado do jogo for inserido atualizar tabela Apostas com a finalização da aposta e adicionar o valor * 2 da aposta se vencedor.
+
+Consultar  seu caixa - View com a informação do Usuario para ver seu caixa
+
+Ver o resultado de suas apostas - View com resultado das apostas
+
+Ver as apostas pendentes - View com as apostas pendentes
