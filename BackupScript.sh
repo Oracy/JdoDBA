@@ -3,7 +3,6 @@
 # crontab -e
 # m h  dom mon dow   command
 # 30 22 */2 * * ./DatabaseBackup.sh
-# DatabaseBackup.sh
 
 DATA=`date +"%d-%m-%Y"`
 

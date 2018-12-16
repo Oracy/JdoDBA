@@ -13,6 +13,13 @@ A ordem de execução dos scripts são:
 2 - CreateTrigger.sql
 3 - CreateView.sql
 4 - ScriptToFeed.sql
+5 - DatabaseBackup.sh # Script para backup de todas as Bases no MySQL.
 
 Outras Triggers que poderiam ser criadas para auxiliar na administração da base de dados são triggers que armazenam os logs de transações feitas dentro do banco de dados.
 Logs de Depositos, Logs de Saques, Logs de Apostas... Todas estas informações para possíveis futuras auditorias.
+
+Rotina de backup deve ser executado o comando abaixo caso o servidor em questão seja Unix
+# Comandos Linux abaixo para agendar a execução do script a cada dois dias às 22:30
+crontab -e
+m h  dom mon dow   command
+30 22 */2 * * ./DatabaseBackup.sh
