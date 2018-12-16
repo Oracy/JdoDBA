@@ -1,7 +1,12 @@
 Na tabela Resultados a coluna Resultado pode receber tres valores inteiros sendo eles 0 - Empate, 1 - Vitoria Time 1, 2 - Vitoria Time 2.
-A tabela Aposta ao invés de fazer a verificação se foi uma aposta vencida ou perdida, criei uma coluna "Resultado" para poder criar uma trigger que alimente este campo.
+A tabela Aposta ao invés de fazer a verificação se foi uma aposta vencida ou perdida através de uma query com o condicionamento na verificação da tabela Apostas e tabela Respostas, foi criado uma coluna "Resultado" para poder criar uma trigger que alimente este campo com a informação se vencida ou perdida a aposta.
 
-Foram criadas 5 triggers, TRG_UPDATE_SALDO_AFTER_APOSTA atualiza o saldo na conta do apostador após a aposta ser feita, TRG_UPDATE_SALDO_AFTER_DEPOSITO atualiza o saldo na conta do apostador após o apostador fazer um depósito, TRG_UPDATE_SALDO_AFTER_SAQUE atualiza o saldo na conta do apostador fazer um saque da sua conta, TRG_UPDATE_SALDO_AFTER_TRANSFERENCIA atualiza o saldo na conta dos apostadores aumentando e diminuindo os valores do saldo da conta de acordo, TRG_UPDATE_SALDO_AFTER_RESULTADO atualiza os valores na tabela de Apostas com o resultado se vencedor ou perdedor, Aposta_Finalizada e se o apostador venceu a aposta recebe o Valor_Apostado * 2
+Foram criadas 5 triggers:
+- TRG_UPDATE_SALDO_AFTER_APOSTA atualiza o saldo na conta do apostador após a aposta ser feita
+- TRG_UPDATE_SALDO_AFTER_DEPOSITO atualiza o saldo na conta do apostador após o apostador fazer um depósito
+- TRG_UPDATE_SALDO_AFTER_SAQUE atualiza o saldo na conta do apostador fazer um saque da sua conta
+- TRG_UPDATE_SALDO_AFTER_TRANSFERENCIA atualiza o saldo na conta dos apostadores aumentando e diminuindo os valores do saldo da conta de acordo
+- TRG_UPDATE_SALDO_AFTER_RESULTADO atualiza os valores na tabela de Apostas com o resultado se vencedor ou perdedor, Aposta_Finalizada e se o apostador venceu a aposta recebe o Valor_Apostado * 2
 
 A ordem de execução dos scripts são:
 1 - CreateModel.sql
@@ -9,7 +14,5 @@ A ordem de execução dos scripts são:
 3 - CreateView.sql
 4 - ScriptToFeed.sql
 
-
-
-
-Resultado inserido - Trigger - Quando o resultado do jogo for inserido atualizar tabela Apostas com a finalização da aposta e adicionar o valor * 2 da aposta se vencedor. - FALTANDO ATUALIZAR TABELA APOSTAS.
+Outras Triggers que poderiam ser criadas para auxiliar na administração da base de dados são triggers que armazenam os logs de transações feitas dentro do banco de dados.
+Logs de Depositos, Logs de Saques, Logs de Apostas... Todas estas informações para possíveis futuras auditorias.
