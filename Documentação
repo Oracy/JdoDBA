@@ -7,6 +7,7 @@ Foram criadas 5 triggers:
 - TRG_UPDATE_SALDO_AFTER_SAQUE atualiza o saldo na conta do apostador fazer um saque da sua conta
 - TRG_UPDATE_SALDO_AFTER_TRANSFERENCIA atualiza o saldo na conta dos apostadores aumentando e diminuindo os valores do saldo da conta de acordo
 - TRG_UPDATE_SALDO_AFTER_RESULTADO atualiza os valores na tabela de Apostas com o resultado se vencedor ou perdedor, Aposta_Finalizada e se o apostador venceu a aposta recebe o Valor_Apostado * 2
+Esta ultima trigger "TRG_UPDATE_SALDO_AFTER_RESULTADO" está com um problema na seleção do Apostador, as outras estão funcionando perfeitamente.
 
 A ordem de execução dos scripts são:
 1 - CreateModel.sql
